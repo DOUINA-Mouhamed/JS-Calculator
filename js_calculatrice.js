@@ -4,7 +4,8 @@ let previousOperator;
 
 const screen = document.querySelector('.screen');
 
-function buttonClick(value){
+function buttonClick(value)
+{
     if (isNaN(value)) {
         handleSymbol(value);
     } else {
@@ -13,8 +14,9 @@ function buttonClick(value){
     screen.innerText = buffer;
 }
 
-function handleSymbol(symbol) {
-    switch (symbol){
+function handleSymbol(symbol)
+{
+    switch (symbol) {
         case 'C':
             buffer = '0';
             runningTotal = 0;
@@ -44,44 +46,48 @@ function handleSymbol(symbol) {
     }
 }
 
-function handleMath(symbol){
-    if(buffer === '0'){
+function handleMath(symbol)
+{
+    if (buffer === '0') {
         return;
     }
 
     const intBuffer = parseInt(buffer);
 
-    if(runningTotal === 0){
+    if (runningTotal === 0){
         runningTotal = intBuffer;
-    }else{
+    } else {
         flushOperation(intBuffer)
     }
     previousOperator = symbol;
     buffer = '0';
 }
 
-function flushOperation(intBuffer){
-    if(previousOperator === '+'){
+function flushOperation(intBuffer)
+{
+    if (previousOperator === '+'){
         runningTotal += intBuffer;
-    }else if(previousOperator === '−'){
+    } else if (previousOperator === '−'){
         runningTotal -= intBuffer;
-    }else if(previousOperator === '×'){
+    } else if (previousOperator === '×'){
         runningTotal *= intBuffer
-    }else if(previousOperator === '÷'){
+    } else if (previousOperator === '÷'){
         runningTotal /= intBuffer;
     } 
 }
 
-function handleNumber(numberString){
-    if(buffer === "0"){
+function handleNumber(numberString)
+{
+    if (buffer === "0") {
         buffer = numberString;
-    }else{
+    } else {
         buffer += numberString;
     }   
 }
 
-function init(){
-    document.querySelector('.calc_buttons').addEventListener('click', function(event){
+function init()
+{
+    document.querySelector('.calc_buttons').addEventListener('click', function(event) {
         buttonClick(event.target.innerText);
     })
 }
